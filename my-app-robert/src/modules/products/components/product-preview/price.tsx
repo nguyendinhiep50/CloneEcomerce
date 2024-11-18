@@ -9,7 +9,7 @@ export default async function PreviewPrice() {
         className="line-through text-ui-fg-muted"
         data-testid="original-price"
       >
-        "price.original_price"
+        200000
       </Text>
       <Text
         className={clx("text-ui-fg-muted", {
@@ -17,7 +17,7 @@ export default async function PreviewPrice() {
         })}
         data-testid="price"
       >
-        price.calculated_price
+        10000
       </Text>
     </>
   )

@@ -9,10 +9,9 @@ import useToggleState from "@lib/hooks/use-toggle-state"
 import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { HttpTypes } from "@medusajs/types"
 import { addCustomerAddress } from "@lib/data/customer"
 
-const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
+const AddAddress = ({ region }: { region: any }) => {
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
 

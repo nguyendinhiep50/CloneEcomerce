@@ -6,7 +6,6 @@ import { useFormState } from "react-dom"
 import Input from "@modules/common/components/input"
 
 import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
 import { updateCustomer } from "@lib/data/customer"
 
 type MyInformationProps = {

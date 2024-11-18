@@ -4,20 +4,20 @@ import { Button } from "@medusajs/ui"
 
 import OrderCard from "../order-card"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { HttpTypes } from "@medusajs/types"
 
-const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
+const OrderOverview = ({ orders }: { orders: any }) => {
   if (orders?.length) {
     return (
       <div className="flex flex-col gap-y-8 w-full">
-        {orders.map((o) => (
+        {/* {orders.map((o) => (
           <div
             key={o.id}
             className="border-b border-gray-200 pb-6 last:pb-0 last:border-none"
           >
             <OrderCard order={o} />
           </div>
-        ))}
+        ))} */}
+        <h1>Tính năng</h1>
       </div>
     )
   }

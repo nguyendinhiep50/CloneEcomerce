@@ -12,10 +12,6 @@ export const metadata: Metadata = {
 export default async function Orders() {
   const orders = await listOrders()
 
-  if (!orders) {
-    notFound()
-  }
-
   return (
     <div className="w-full" data-testid="orders-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">

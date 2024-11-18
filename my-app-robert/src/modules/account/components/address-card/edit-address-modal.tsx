@@ -10,19 +10,13 @@ import Modal from "@modules/common/components/modal"
 import Spinner from "@modules/common/icons/spinner"
 import { useFormState } from "react-dom"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { HttpTypes } from "@medusajs/types"
 import {
   deleteCustomerAddress,
   updateCustomerAddress,
 } from "@lib/data/customer"
 
-type EditAddressProps = {
-  region: HttpTypes.StoreRegion
-  address: HttpTypes.StoreCustomerAddress
-  isActive?: boolean
-}
 
-const EditAddress: React.FC<EditAddressProps> = ({
+const EditAddress: React.FC<any> = ({
   region,
   address,
   isActive = false,

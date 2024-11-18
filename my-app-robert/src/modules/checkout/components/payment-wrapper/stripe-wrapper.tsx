@@ -2,7 +2,6 @@
 
 import { Stripe, StripeElementsOptions } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
-import { HttpTypes } from "@medusajs/types"
 
 type StripeWrapperProps = {
   paymentSession: HttpTypes.StorePaymentSession

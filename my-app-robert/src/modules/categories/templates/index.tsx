@@ -7,15 +7,12 @@ import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { HttpTypes } from "@medusajs/types"
 
 export default function CategoryTemplate({
-  categories,
   sortBy,
   page,
   countryCode,
 }: {
-  categories: HttpTypes.StoreProductCategory[]
   sortBy?: SortOptions
   page?: string
   countryCode: string
@@ -23,10 +20,6 @@ export default function CategoryTemplate({
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
-  const category = categories[categories.length - 1]
-  const parents = categories.slice(0, categories.length - 1)
-
-  if (!category || !countryCode) notFound()
 
   return (
     <div
@@ -36,7 +29,7 @@ export default function CategoryTemplate({
       <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-          {parents &&
+          {/* {parents &&
             parents.map((parent) => (
               <span key={parent.id} className="text-ui-fg-subtle">
                 <LocalizedClientLink
@@ -49,9 +42,9 @@ export default function CategoryTemplate({
                 /
               </span>
             ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
+          <h1 data-testid="category-page-title">{category.name}</h1> */}
         </div>
-        {category.description && (
+        {/* {category.description && (
           <div className="mb-8 text-base-regular">
             <p>{category.description}</p>
           </div>
@@ -68,12 +61,12 @@ export default function CategoryTemplate({
               ))}
             </ul>
           </div>
-        )}
+        )} */}
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}
-            categoryId={category.id}
+            categoryId={"category.id"}
             countryCode={countryCode}
           />
         </Suspense>

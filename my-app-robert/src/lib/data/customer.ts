@@ -1,67 +1,11 @@
 "use server"
-
-import { sdk } from "@lib/config"
-import medusaError from "@lib/util/medusa-error"
-import { HttpTypes } from "@medusajs/types"
-import { revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
-import { cache } from "react"
-import { getAuthHeaders, removeAuthToken, setAuthToken } from "./cookies"
-
-export const getCustomer = cache(async function () {
-  return await sdk.store.customer
-    .retrieve({}, { next: { tags: ["customer"] }, ...getAuthHeaders() })
-    .then(({ customer }) => customer)
-    .catch(() => null)
-})
-
-export const updateCustomer = cache(async function (
-  body: HttpTypes.StoreUpdateCustomer
-) {
-  const updateRes = await sdk.store.customer
-    .update(body, {}, getAuthHeaders())
-    .then(({ customer }) => customer)
-    .catch(medusaError)
-
-  revalidateTag("customer")
-  return updateRes
-})
+import { persistToken } from '@services/localStorage.service';
+import apiServices from "api/api.services"
+import { LoginRequest } from "api/rb.api"
+import { redirect } from "next/dist/server/api-utils"
 
 export async function signup(_currentState: unknown, formData: FormData) {
-  const password = formData.get("password") as string
-  const customerForm = {
-    email: formData.get("email") as string,
-    first_name: formData.get("first_name") as string,
-    last_name: formData.get("last_name") as string,
-    phone: formData.get("phone") as string,
-  }
-
-  try {
-    const token = await sdk.auth.register("customer", "emailpass", {
-      email: customerForm.email,
-      password: password,
-    })
-
-    const customHeaders = { authorization: `Bearer ${token}` }
-
-    const { customer: createdCustomer } = await sdk.store.customer.create(
-      customerForm,
-      {},
-      customHeaders
-    )
-
-    const loginToken = await sdk.auth.login("customer", "emailpass", {
-      email: customerForm.email,
-      password,
-    })
-
-    setAuthToken(loginToken as string)
-
-    revalidateTag("customer")
-    return createdCustomer
-  } catch (error: any) {
-    return error.toString()
-  }
+  return null
 }
 
 export async function login(_currentState: unknown, formData: FormData) {
@@ -69,23 +13,25 @@ export async function login(_currentState: unknown, formData: FormData) {
   const password = formData.get("password") as string
 
   try {
-    await sdk.auth
-      .login("customer", "emailpass", { email, password })
-      .then((token) => {
-        setAuthToken(token as string)
-        revalidateTag("customer")
-      })
+    const model: LoginRequest = {
+      userName: email,
+      password: password,
+    } as LoginRequest;
+    const res = await apiServices.RbApi.login(model);
+
+    if(res.isSuccess){
+      persistToken(res.data?.token as string)
+      
+      let redirectUrl = '../'
+    }
   } catch (error: any) {
     return error.toString()
   }
 }
 
 export async function signout(countryCode: string) {
-  await sdk.auth.logout()
-  removeAuthToken()
-  revalidateTag("auth")
-  revalidateTag("customer")
-  redirect(`/${countryCode}/account`)
+  return null
+
 }
 
 export const addCustomerAddress = async (
@@ -105,29 +51,14 @@ export const addCustomerAddress = async (
     phone: formData.get("phone") as string,
   }
 
-  return sdk.store.customer
-    .createAddress(address, {}, getAuthHeaders())
-    .then(({ customer }) => {
-      revalidateTag("customer")
-      return { success: true, error: null }
-    })
-    .catch((err) => {
-      return { success: false, error: err.toString() }
-    })
+  return null
+
 }
 
 export const deleteCustomerAddress = async (
   addressId: string
 ): Promise<void> => {
-  await sdk.store.customer
-    .deleteAddress(addressId, getAuthHeaders())
-    .then(() => {
-      revalidateTag("customer")
-      return { success: true, error: null }
-    })
-    .catch((err) => {
-      return { success: false, error: err.toString() }
-    })
+
 }
 
 export const updateCustomerAddress = async (
@@ -149,13 +80,6 @@ export const updateCustomerAddress = async (
     phone: formData.get("phone") as string,
   }
 
-  return sdk.store.customer
-    .updateAddress(addressId, address, {}, getAuthHeaders())
-    .then(() => {
-      revalidateTag("customer")
-      return { success: true, error: null }
-    })
-    .catch((err) => {
-      return { success: false, error: err.toString() }
-    })
+  return null
+
 }

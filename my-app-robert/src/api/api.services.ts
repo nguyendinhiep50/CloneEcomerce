@@ -1,15 +1,15 @@
 import axios from "axios";
-import { RobertApi } from "./robert.api";
+import { RobertApi } from "./rb.api";
 import { readToken } from "@services/localStorage.service";
 
 axios.defaults.headers.common = {
     Authorization: `Bearer ${readToken()}`,
 };
 
-const RobertApi = new RobertApi(process.env.REACT_APP_API_BASE_URL);
+const RbApi = new RobertApi("https://localhost:7173");
 
 const apiServices = {
-    RobertApi
+    RbApi
 }
 
 export default apiServices;
@@ -18,5 +18,5 @@ export const axiosSetAccessTokenMiddleware = () => {
     axios.defaults.headers.common = {
         Authorization: `Bearer ${readToken()}`,
     };
-    apiServices.RobertApi = new RobertApi(process.env.REACT_APP_API_BASE_URL);
+    apiServices.RbApi = new RobertApi("https://localhost:7173");
 }

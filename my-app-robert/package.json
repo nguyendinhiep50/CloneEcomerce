@@ -11,7 +11,6 @@
   "dependencies": {
     "@headlessui/react": "^1.6.1",
     "@medusajs/icons": "^2.0.2",
-    "@medusajs/js-sdk": "2.0.0",
     "@medusajs/ui": "^2.4.3",
     "axios": "^1.6.7",
     "lodash": "^4.17.21",
@@ -24,15 +23,14 @@
   },
   "devDependencies": {
     "@medusajs/ui-preset": "2.0.0",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/lodash": "^4.14.195",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-
   }
 }

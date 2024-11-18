@@ -7,29 +7,15 @@ import NativeSelect from "@modules/common/components/native-select"
 
 import AccountInfo from "../account-info"
 import { useFormState } from "react-dom"
-import { HttpTypes } from "@medusajs/types"
 import { updateCustomerAddress } from "@lib/data/customer"
 
-type MyInformationProps = {
-  customer: HttpTypes.StoreCustomer
-  regions: HttpTypes.StoreRegion[]
-}
 
-const ProfileBillingAddress: React.FC<MyInformationProps> = ({
+const ProfileBillingAddress: React.FC<any> = ({
   customer,
   regions,
 }) => {
   const regionOptions = useMemo(() => {
-    return (
-      regions
-        ?.map((region) => {
-          return region.countries?.map((country) => ({
-            value: country.iso_2,
-            label: country.display_name,
-          }))
-        })
-        .flat() || []
-    )
+    return null
   }, [regions])
 
   const [successState, setSuccessState] = React.useState(false)

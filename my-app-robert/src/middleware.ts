@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
-const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
-
 /**
  * Middleware to handle region selection and onboarding status.
  */
@@ -11,7 +8,6 @@ export async function middleware(request: NextRequest) {
   const isOnboarding = searchParams.get("onboarding") === "true"
   const cartId = searchParams.get("cart_id")
   const checkoutStep = searchParams.get("step")
-  // check if one of the country codes is in the url
 
   const redirectPath =
     request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname

@@ -61,12 +61,14 @@ const testUser = {
   };
   
 export const persistToken = (token: string): void => {
-  localStorage.setItem('accessToken', token);
+    localStorage.setItem('accessToken', token);
 };
 
 export const readToken = (): string => {
-  return localStorage.getItem('accessToken') || 'bearerToken';
-};
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('accessToken') || 'bearerToken';
+  }
+  return 'bearerToken';};
 
 export const persistUser = (user: UserModel): void => {
   localStorage.setItem('user', JSON.stringify(user));

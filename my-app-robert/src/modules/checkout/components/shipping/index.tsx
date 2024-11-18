@@ -11,7 +11,6 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { setShippingMethod } from "@lib/data/cart"
 import { convertToLocale } from "@lib/util/money"
-import { HttpTypes } from "@medusajs/types"
 
 type ShippingProps = {
   cart: HttpTypes.StoreCart
