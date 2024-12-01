@@ -13,16 +13,21 @@
     "@medusajs/icons": "^2.0.2",
     "@medusajs/ui": "^2.4.3",
     "axios": "^1.6.7",
+    "cookie": "^1.0.2",
+    "jose": "^5.9.6",
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "15.0.3",
     "react": "^18.3.1",
     "react-country-flag": "^3.0.2",
     "react-dom": "^18.3.1",
     "react-instantsearch-hooks-web": "^6.47.3",
-    "tailwindcss-radix": "^2.9.0"
+    "tailwindcss-radix": "^2.9.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@medusajs/ui-preset": "2.0.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.14.195",
     "@types/node": "^20",
     "@types/react": "^18",

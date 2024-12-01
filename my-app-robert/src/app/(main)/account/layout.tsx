@@ -1,4 +1,5 @@
 import AccountLayout from "@modules/account/templates/account-layout"
+import { cookies } from "next/headers";
 
 export default async function AccountPageLayout({
   dashboard,
@@ -7,7 +8,7 @@ export default async function AccountPageLayout({
   dashboard?: React.ReactNode
   login?: React.ReactNode
 }) {
-  const customer = null;
+  const customer = (await cookies()).get("session")?.value;
 
   return (
     <AccountLayout customer={customer}>

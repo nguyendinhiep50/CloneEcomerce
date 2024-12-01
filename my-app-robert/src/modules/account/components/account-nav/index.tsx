@@ -9,18 +9,15 @@ import User from "@modules/common/icons/user"
 import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { signout } from "@lib/data/customer"
 
 const AccountNav = ({
   customer,
 }: {
-  customer: null
+  customer: string | undefined
 }) => {
   const route = usePathname()
-  const { countryCode } = useParams() as { countryCode: string }
 
   const handleLogout = async () => {
-    await signout(countryCode)
   }
 
   return (
@@ -40,7 +37,7 @@ const AccountNav = ({
         ) : (
           <>
             <div className="text-xl-semi mb-4 px-8">
-              Hello {customer}
+              Hello Robert
             </div>
             <div className="text-base-regular">
               <ul>
